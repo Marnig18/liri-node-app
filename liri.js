@@ -46,7 +46,7 @@ function tweets(){
 	client.get("statuses/user_timeline", params, function(err, tweets, response){
 				if (!err){
 				// console.log(JSON.stringify(tweets, null, 2));
-				for (i = 0; i < tweets.length; i++){
+				for (var i = 0; i < tweets.length; i++){
 				console.log(tweets[i].text + " " +  tweets[i].created_at);
 			}
 		}
@@ -129,7 +129,7 @@ function spotify(song){
  function movie(){
 
  	if(action === "movie-this" && !process.argv[3]){
-		// name = "Mr.+Nobody"
+		name = "Mr.+Nobody"
 		// console.log("The movie is: " + name);
 		queryUrl = "http://www.omdbapi.com/?t=" + name + "&y=&plot=short&apikey=40e9cece";
 
@@ -158,7 +158,7 @@ function spotify(song){
 	else if(action === "movie-this"){
 		var newName = process.argv[3]
 		
-		for(i = 4; i<process.argv.length; i++){
+		for(var i = 4; i<process.argv.length; i++){
 			newName += "+" + process.argv[i];
 		}
 
@@ -182,12 +182,22 @@ function spotify(song){
 		 		console.log("The actors in the movie are " + movie.Actors)
 		 		// console.log(movie.Ratings[1].source);
 
-		 		var rottenName = process.argv[3];
-			 		for (i = 4; i<process.argv.length; i++){
-						rottenName += "_" + process.argv[i];
-						}
+		 
+					console.log(movie.Title)
 
-						console.log(rottenName)
+					var movieArr = movie.Title.split(" ");
+					console.log(movieArr)
+					
+					var rottenName = movieArr[0];
+					
+					for (var i=1; i < movieArr.length; i++){
+						 rottenName += "_" + movieArr[i]
+					}
+
+					console.log (rottenName)
+
+
+						
 		 		console.log("http://www.rottentomatoes.com/m/" + rottenName);
 		 	}
 	 	});
@@ -214,6 +224,7 @@ function spotify(song){
 			 		for (i = 4; i<process.argv.length; i++){
 						rottenName += "_" + process.argv[i];
 						}
+
 
 						// console.log(rottenName)
 		 		console.log("http://www.rottentomatoes.com/m/" + rottenName);
