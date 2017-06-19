@@ -42,12 +42,15 @@ function tweets(){
 	});
 
 
-	var params = {srceen_name: "stuffmydogthink"};
+	var params = {screen_name: "_Snape_"};
 	client.get("statuses/user_timeline", params, function(err, tweets, response){
 				if (!err){
 				// console.log(JSON.stringify(tweets, null, 2));
 				for (var i = 0; i < tweets.length; i++){
 				console.log(tweets[i].text + " " +  tweets[i].created_at);
+	
+
+			
 			}
 		}
 	});
